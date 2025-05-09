@@ -1,19 +1,18 @@
-import { BrowserRouter, Routes, Route, Link, useLocation, Navigate } from 'react-router-dom'
-import { usePrivy } from '@privy-io/react-auth'
-import { ArrowRightLeft, CreditCard, Gift, Coins, Wallet } from 'lucide-react'
 import './index.css'
 
-import { BalanceCard } from '@/components/balance-card'
-import { BalanceChart } from '@/components/balance-chart'
-import { Spinner } from '@/components/spinner'
-import { TransactionList } from '@/components/transaction-list'
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
+import { useLogin, usePrivy } from '@privy-io/react-auth'
+import { ArrowRightLeft, Coins, CreditCard, Gift, Wallet } from 'lucide-react'
+import { BrowserRouter, Link, Navigate, Route, Routes, useLocation } from 'react-router-dom'
 
-import { HomeScreen } from '@/screens/home-screen'
-import { RampsScreen } from '@/screens/ramps-screen'
+import { Spinner } from '@/components/spinner'
+import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { CardScreen } from '@/screens/card-screen'
 import { EarnScreen } from '@/screens/earn-screen'
+import { HomeScreen } from '@/screens/home-screen'
+import { RampsScreen } from '@/screens/ramps-screen'
 import { RewardsScreen } from '@/screens/rewards-screen'
+
+// import useSafeWallet from './hooks/useSafeWallet'
 
 // Navigation component that syncs tabs with routes
 function Navigation() {
@@ -60,12 +59,50 @@ function Navigation() {
 
 // Main App component
 function App() {
-  const { ready } = usePrivy()
+  const { ready, authenticated } = usePrivy()
+  // const { safeWallet, sendTx } = useSafeWallet()
+  // if (showWallet) {
+  //   return <EmbeddedWallet />
+  // }
+
+  const { login } = useLogin({
+    onComplete({ user, isNewUser, wasAlreadyAuthenticated, loginMethod, loginAccount }) {
+      console.log('🔑 ✅ Login success', {
+        user,
+        isNewUser,
+        wasAlreadyAuthenticated,
+        loginMethod,
+        loginAccount,
+      })
+      // setShowWallet(true)
+    },
+    onError(error) {
+      console.log('🔑 🚨 Login error', { error })
+    },
+  })
 
   if (!ready) {
     return (
       <div className="flex h-screen w-screen items-center justify-center">
         <Spinner />
+      </div>
+    )
+  }
+
+  if (!authenticated) {
+    return (
+      <div className="flex h-screen w-screen items-center justify-center">
+        <div className="flex flex-col items-center gap-4">
+          <div className="text-lg font-semibold">Privy is ready!</div>
+          <button
+            className="my-4 w-full rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm disabled:bg-indigo-400"
+            onClick={login}
+            // Always check that Privy is `ready` and the user is not `authenticated` before calling `login`
+            disabled={!ready || authenticated}
+          >
+            Login
+          </button>
+        </div>
       </div>
     )
   }

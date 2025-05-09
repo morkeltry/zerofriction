@@ -11,6 +11,7 @@ export default defineConfig(async () => ({
   plugins: [react(), tailwindcss()],
   resolve: {
     alias: {
+      axios: 'axios/dist/esm/axios.js',
       '@': path.resolve(__dirname, './src'),
     },
   },
