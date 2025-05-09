@@ -5,7 +5,7 @@
 // import { useTheme } from "@/components/theme-provider"
 import './index.css'
 
-import { usePrivy, useLogin } from '@privy-io/react-auth'
+import { usePrivy, useLogin, useWallets } from '@privy-io/react-auth'
 
 import { Spinner } from '@/components/spinner'
 import useSafeWallet from './hooks/useSafeWallet';
@@ -20,7 +20,8 @@ function App() {
   // }
 
   const { ready, authenticated } = usePrivy()
-  const [showWallet, setShowWallet] = useState(false)
+  const { ready: readyWallets, wallets } = useWallets()
+  // const [showWallet, setShowWallet] = useState(false)
 
   const { login } = useLogin({
     onComplete({ user, isNewUser, wasAlreadyAuthenticated, loginMethod, loginAccount }) {
@@ -31,7 +32,7 @@ function App() {
         loginMethod,
         loginAccount
       })
-      setShowWallet(true)
+      // setShowWallet(true)
     },
     onError(error) {
       console.log('🔑 🚨 Login error', { error })
@@ -46,9 +47,9 @@ function App() {
     )
   }
 
-  if (showWallet) {
-    return <EmbeddedWallet />
-  }
+  // if (ready && authenticated && readyWallets && wallets.length > 0) {
+  //   return <EmbeddedWallet />
+  // }
 
   // Now it's safe to use other Privy hooks and state
   return (
@@ -57,7 +58,7 @@ function App() {
         <div className="text-lg font-semibold">Privy is ready!</div>
         <button
           onClick={sendTx}
-          disabled={!safeWallet}
+          disabled={!(ready && authenticated && readyWallets && wallets.length > 0)}
           className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 disabled:bg-gray-400 disabled:cursor-not-allowed"
         >Send Tx</button>
         <button

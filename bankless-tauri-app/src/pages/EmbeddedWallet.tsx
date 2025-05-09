@@ -1,9 +1,12 @@
-import { usePrivy } from '@privy-io/react-auth'
+import { usePrivy, useWallets } from '@privy-io/react-auth'
 import useSafeWallet from '../hooks/useSafeWallet'
+import { createWalletClient, custom } from 'viem'
+import { sepolia } from 'viem/chains'
 
 export default function EmbeddedWallet() {
   const { safeWallet, sendTx } = useSafeWallet()
-  const { user } = usePrivy()
+//   const { login, logout, ready, authenticated } = usePrivy()
+//   const { ready: readyWallets, wallets } = useWallets()
 
   return (
     <div className="flex h-screen w-screen items-center justify-center">
