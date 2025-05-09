@@ -1,55 +1,32 @@
-import { useState } from 'react';
-import reactLogo from './assets/react.svg';
-import { invoke } from '@tauri-apps/api/core';
-import './App.css';
-import useSafeWallet from './hooks/useSafeWallet';
+// import { useEffect } from "react";
+// import { invoke } from "@tauri-apps/api/core";
+// import { ThemeProvider } from "@/components/theme-provider";
+// import { Button } from "@/components/ui/button";
+// import { useTheme } from "@/components/theme-provider"
+import './index.css'
+
+import { usePrivy } from '@privy-io/react-auth'
+
+import { Spinner } from '@/components/spinner'
 
 function App() {
-  const { safeWallet, sendTx } = useSafeWallet();
-  const [greetMsg, setGreetMsg] = useState('');
-  const [name, setName] = useState('');
+  // async function greet() {
+  //   // Learn more about Tauri commands at https://tauri.app/develop/calling-rust/
+  //   setGreetMsg(await invoke("greet", { name }));
+  // }
 
-  async function greet() {
-    // Learn more about Tauri commands at https://tauri.app/develop/calling-rust/
-    setGreetMsg(await invoke('greet', { name }));
+  const { ready } = usePrivy()
+
+  if (!ready) {
+    return (
+      <div className="flex h-screen w-screen items-center justify-center">
+        <Spinner />
+      </div>
+    )
   }
 
-  return (
-    <main className="container">
-      <h1>Welcome to Tauri + React</h1>
-      <button onClick={sendTx} disabled={!safeWallet}>
-        Send Tx
-      </button>
-      <div className="row">
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo vite" alt="Vite logo" />
-        </a>
-        <a href="https://tauri.app" target="_blank">
-          <img src="/tauri.svg" className="logo tauri" alt="Tauri logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <p>Click on the Tauri, Vite, and React logos to learn more.</p>
-
-      <form
-        className="row"
-        onSubmit={(e) => {
-          e.preventDefault();
-          greet();
-        }}
-      >
-        <input
-          id="greet-input"
-          onChange={(e) => setName(e.currentTarget.value)}
-          placeholder="Enter a name..."
-        />
-        <button type="submit">Greet</button>
-      </form>
-      <p>{greetMsg}</p>
-    </main>
-  );
+  // Now it's safe to use other Privy hooks and state
+  return <div className="flex h-screen w-screen items-center justify-center">Privy is ready!</div>
 }
 
-export default App;
+export default App
