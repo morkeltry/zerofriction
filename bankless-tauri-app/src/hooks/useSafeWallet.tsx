@@ -1,6 +1,7 @@
 import { Safe4337Pack } from '@safe-global/relay-kit';
 import { Wallet } from 'ethers';
 import { useEffect, useState } from 'react';
+import { localstorageKey } from '../utils/localstorage';
 
 const SEPOLIA_RPC_URL = 'https://ethereum-sepolia-rpc.publicnode.com';
 // const Gnosis_RPC_URL = 'https://gnosis.drpc.org';
@@ -10,7 +11,9 @@ const WALLET = new Wallet(SEED_PHRASE);
 
 export default function useSafeWallet() {
   const [safeWallet, setSafeWallet] = useState<Safe4337Pack | null>(null);
-  const [safeAddress, setSafeAddress] = useState<string | null>(null);
+  const [safeAddress, setSafeAddress] = useState<string | null>(
+    localStorage.getItem(localstorageKey) || null
+  );
 
   useEffect(() => {
     const initSafeWallet = async () => {
@@ -57,6 +60,7 @@ export default function useSafeWallet() {
         await new Promise((resolve) => setTimeout(resolve, 2000));
         userOperationReceipt = await safeWallet.getUserOperationReceipt(txHash);
       }
+      localStorage.setItem(localstorageKey, userOperationReceipt.sender);
       setSafeAddress(userOperationReceipt.sender);
       console.log(txHash, userOperationReceipt);
     } else {
