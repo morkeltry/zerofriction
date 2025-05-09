@@ -1,42 +1,33 @@
 import { Safe4337Pack } from '@safe-global/relay-kit'
-import { Wallet } from 'ethers'
 import { useEffect, useState } from 'react'
 import { localstorageKey } from '../utils/localstorage'
-import { useWallets, usePrivy } from '@privy-io/react-auth'
+import { useWallets } from '@privy-io/react-auth'
 import { createWalletClient, custom } from 'viem'
 import { sepolia } from 'viem/chains'
 
-const SEPOLIA_RPC_URL = 'https://ethereum-sepolia-rpc.publicnode.com'
-// const Gnosis_RPC_URL = 'https://gnosis.drpc.org';
-const SEED_PHRASE = '0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80'
-const WALLET = new Wallet(SEED_PHRASE)
-
 export default function useSafeWallet() {
+  const [isInitialized, setIsInitialized] = useState(false)
   const [safeWallet, setSafeWallet] = useState<Safe4337Pack | null>(null)
   const [safeAddress, setSafeAddress] = useState<string | null>(
     localStorage.getItem(localstorageKey) || null
   )
-  const { signMessage} = usePrivy()
   const { wallets } = useWallets()
   useEffect(() => {
     const initSafeWallet = async () => {
+      if (isInitialized) return
       if (!wallets || wallets.length === 0) {
         console.log('No wallets available')
         return
       }
-
-      // console.log(signMessage({ message: "jjljljlj" }));
-
       const ethereumProvider = await wallets[0].getEthereumProvider()
 
       const provider = createWalletClient({
         chain: sepolia,
-        transport: custom(ethereumProvider)
+        transport: custom(ethereumProvider),
       })
 
       const signer = wallets[0].address
-      console.log("Singer:",signer);
-  
+
       const safeWallet = await Safe4337Pack.init({
         provider: provider as any,
         signer: signer,
@@ -48,12 +39,11 @@ export default function useSafeWallet() {
         paymasterOptions: {
           isSponsored: true,
           paymasterUrl: `https://api.pimlico.io/v2/11155111/rpc?add_balance_override&apikey=pim_k8rpLTHYkY3pEUHoa7Lc98`,
-          //   paymasterAddress: '0x...',
-          //   paymasterTokenAddress: '0x...',
           sponsorshipPolicyId: 'sp_fantastic_baron_zemo',
         },
       })
       setSafeWallet(safeWallet)
+      setIsInitialized(true)
     }
     initSafeWallet()
   }, [wallets])
