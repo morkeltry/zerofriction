@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 const SEPOLIA_RPC_URL = 'https://ethereum-sepolia-rpc.publicnode.com';
 // const Gnosis_RPC_URL = 'https://gnosis.drpc.org';
 const SEED_PHRASE =
-  '0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80';
+  '0x4bbbf85ce3377467afe5d46f804f221813b2bb87f24d81f60f1fcdbf7cbf4356';
 const WALLET = new Wallet(SEED_PHRASE);
 
 export default function useSafeWallet() {
@@ -50,8 +50,16 @@ export default function useSafeWallet() {
         executable: signed,
       });
       console.log(txHash);
+    } else {
+      throw new Error('Safe wallet not initialized');
     }
   };
 
-  return { safeWallet, sendTx };
+  const safeAddress = async () => {
+    if (safeWallet) {
+      const address = await safeWallet.console.log(address);
+    }
+  };
+
+  return { safeWallet, sendTx, safeAddress };
 }

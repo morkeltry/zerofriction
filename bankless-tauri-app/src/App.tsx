@@ -17,7 +17,9 @@ function App() {
   return (
     <main className="container">
       <h1>Welcome to Tauri + React</h1>
-      <button onClick={sendTx}>Send Tx</button>
+      <button onClick={sendTx} disabled={!safeWallet}>
+        Send Tx
+      </button>
       <div className="row">
         <a href="https://vitejs.dev" target="_blank">
           <img src="/vite.svg" className="logo vite" alt="Vite logo" />
