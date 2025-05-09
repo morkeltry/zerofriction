@@ -5,8 +5,7 @@ import './App.css';
 import useSafeWallet from './hooks/useSafeWallet';
 
 function App() {
-  const { safeWallet } = useSafeWallet();
-  console.log(safeWallet);
+  const { safeWallet, sendTx } = useSafeWallet();
   const [greetMsg, setGreetMsg] = useState('');
   const [name, setName] = useState('');
 
@@ -18,7 +17,7 @@ function App() {
   return (
     <main className="container">
       <h1>Welcome to Tauri + React</h1>
-
+      <button onClick={sendTx}>Send Tx</button>
       <div className="row">
         <a href="https://vitejs.dev" target="_blank">
           <img src="/vite.svg" className="logo vite" alt="Vite logo" />

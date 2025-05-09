@@ -14,8 +14,7 @@ export default function useSafeWallet() {
   useEffect(() => {
     const initSafeWallet = async () => {
       const safeWallet = await Safe4337Pack.init({
-        provider:
-          'https://api.pimlico.io/v2/11155111/rpc?apikey=pim_k8rpLTHYkY3pEUHoa7Lc98',
+        provider: SEPOLIA_RPC_URL,
         signer: SEED_PHRASE,
         bundlerUrl: `https://api.pimlico.io/v2/11155111/rpc?add_balance_override&apikey=pim_k8rpLTHYkY3pEUHoa7Lc98`,
         options: {
@@ -35,27 +34,24 @@ export default function useSafeWallet() {
     initSafeWallet();
   }, []);
 
-  useEffect(() => {
-    const sendTx = async () => {
-      if (safeWallet) {
-        const txs = await safeWallet.createTransaction({
-          transactions: [
-            {
-              to: '0xd0B19109DD194fe366f2d2dA34B3C22Dabb1Cb0b',
-              value: '0',
-              data: '0x',
-            },
-          ],
-        });
-        const signed = await safeWallet.signSafeOperation(txs);
-        const txHash = await safeWallet.executeTransaction({
-          executable: signed,
-        });
-        console.log(txHash);
-      }
-    };
-    sendTx();
-  }, [safeWallet]);
+  const sendTx = async () => {
+    if (safeWallet) {
+      const txs = await safeWallet.createTransaction({
+        transactions: [
+          {
+            to: '0xd0B19109DD194fe366f2d2dA34B3C22Dabb1Cb0b',
+            value: '0',
+            data: '0x',
+          },
+        ],
+      });
+      const signed = await safeWallet.signSafeOperation(txs);
+      const txHash = await safeWallet.executeTransaction({
+        executable: signed,
+      });
+      console.log(txHash);
+    }
+  };
 
-  return { safeWallet };
+  return { safeWallet, sendTx };
 }
