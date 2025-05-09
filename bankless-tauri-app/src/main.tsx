@@ -8,7 +8,7 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
     <PrivyProvider
       appId="cmah1dydu00gdjy0ni6eqz7ke"
-      clientId="client-WY6LH9RLAGPMa2Ep2p64Eak3vrCdQ5YhYn5tCRQWmgnYY"
+      // clientId="client-WY6LH9RLAGPMa2Ep2p64Eak3vrCdQ5YhYn5tCRQWmgnYY"
       config={{
         // Create embedded wallets for users who don't have a wallet
         embeddedWallets: {
