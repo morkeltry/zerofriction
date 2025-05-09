@@ -1,0 +1,460 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 54;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1583246AF6DE0F8D00BFEF07 /* assets in Resources */ = {isa = PBXBuildFile; fileRef = 4B91345C1E64309470D71DE4 /* assets */; };
+		194658E866896A7727628C47 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3EDB95B09496152F881AC820 /* Assets.xcassets */; };
+		25E7A19739F3BC73DAE47603 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70DB7C31DB7395D1B024D1DA /* Security.framework */; };
+		2EF8DDCE9BC3F16A9E60D504 /* MetalKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4EDF5B406C28B815E9AACB40 /* MetalKit.framework */; };
+		44E684EFAFF4D790663F2186 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 54E73D8769235D5A3C7C3480 /* LaunchScreen.storyboard */; };
+		775966058CEEE4D1053F7C75 /* libapp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DA889EAE7802FE9F92A55627 /* libapp.a */; };
+		8F4979FAC373ACC0E01AA33F /* Metal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 812B817A262E1B86434D884F /* Metal.framework */; };
+		9F1C5B34B7A60BE1E919FC76 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0030BD61ECF6A813C9B3AD73 /* UIKit.framework */; };
+		AE0B898562DB6A53C41F51DD /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94A6011178B9EC450FEC75D3 /* WebKit.framework */; };
+		B2543A6F353FB2982DB3D86E /* main.mm in Sources */ = {isa = PBXBuildFile; fileRef = FC0DCE1C8C6F5F6BE63E2CF6 /* main.mm */; };
+		C43C82D00AF25B18E8290B0F /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 975D5AB27DFC81F87AA4B1DB /* QuartzCore.framework */; };
+		D4EF0E38196122E092381E81 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14C7172851565A05DFAC9F05 /* CoreGraphics.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		0030BD61ECF6A813C9B3AD73 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		14C7172851565A05DFAC9F05 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		371B985EFA0A9B373DC19B9E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		3EDB95B09496152F881AC820 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		4B91345C1E64309470D71DE4 /* assets */ = {isa = PBXFileReference; lastKnownFileType = folder; path = assets; sourceTree = SOURCE_ROOT; };
+		4EDF5B406C28B815E9AACB40 /* MetalKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MetalKit.framework; path = System/Library/Frameworks/MetalKit.framework; sourceTree = SDKROOT; };
+		54E73D8769235D5A3C7C3480 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		70DB7C31DB7395D1B024D1DA /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		812B817A262E1B86434D884F /* Metal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Metal.framework; path = System/Library/Frameworks/Metal.framework; sourceTree = SDKROOT; };
+		8311D85F98334AD2AA683EE5 /* main.rs */ = {isa = PBXFileReference; path = main.rs; sourceTree = "<group>"; };
+		880BB58A672B257ED88F9083 /* lib.rs */ = {isa = PBXFileReference; path = lib.rs; sourceTree = "<group>"; };
+		8E4E077ABB07BA9808F49DFA /* bankless-tauri-app_iOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "bankless-tauri-app_iOS.entitlements"; sourceTree = "<group>"; };
+		94A6011178B9EC450FEC75D3 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
+		975D5AB27DFC81F87AA4B1DB /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		A3DCDEAE799723C7DA93ADB1 /* bindings.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = bindings.h; sourceTree = "<group>"; };
+		B0E68EB38BB827CC8580EF0A /* bankless-tauri-app_iOS.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = "bankless-tauri-app_iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DA889EAE7802FE9F92A55627 /* libapp.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libapp.a; sourceTree = "<group>"; };
+		FC0DCE1C8C6F5F6BE63E2CF6 /* main.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = main.mm; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		EACF140950E234F60B242740 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				775966058CEEE4D1053F7C75 /* libapp.a in Frameworks */,
+				D4EF0E38196122E092381E81 /* CoreGraphics.framework in Frameworks */,
+				8F4979FAC373ACC0E01AA33F /* Metal.framework in Frameworks */,
+				2EF8DDCE9BC3F16A9E60D504 /* MetalKit.framework in Frameworks */,
+				C43C82D00AF25B18E8290B0F /* QuartzCore.framework in Frameworks */,
+				25E7A19739F3BC73DAE47603 /* Security.framework in Frameworks */,
+				9F1C5B34B7A60BE1E919FC76 /* UIKit.framework in Frameworks */,
+				AE0B898562DB6A53C41F51DD /* WebKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		06AA0A8D10F968B4203533E0 /* bankless-tauri-app_iOS */ = {
+			isa = PBXGroup;
+			children = (
+				8E4E077ABB07BA9808F49DFA /* bankless-tauri-app_iOS.entitlements */,
+				371B985EFA0A9B373DC19B9E /* Info.plist */,
+			);
+			path = "bankless-tauri-app_iOS";
+			sourceTree = "<group>";
+		};
+		4254316079CE7C3CF8C53405 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				14C7172851565A05DFAC9F05 /* CoreGraphics.framework */,
+				DA889EAE7802FE9F92A55627 /* libapp.a */,
+				812B817A262E1B86434D884F /* Metal.framework */,
+				4EDF5B406C28B815E9AACB40 /* MetalKit.framework */,
+				975D5AB27DFC81F87AA4B1DB /* QuartzCore.framework */,
+				70DB7C31DB7395D1B024D1DA /* Security.framework */,
+				0030BD61ECF6A813C9B3AD73 /* UIKit.framework */,
+				94A6011178B9EC450FEC75D3 /* WebKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		7E9A834765A9023957FB183E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B0E68EB38BB827CC8580EF0A /* bankless-tauri-app_iOS.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		80D333D466027BAB48950D34 = {
+			isa = PBXGroup;
+			children = (
+				4B91345C1E64309470D71DE4 /* assets */,
+				3EDB95B09496152F881AC820 /* Assets.xcassets */,
+				54E73D8769235D5A3C7C3480 /* LaunchScreen.storyboard */,
+				06AA0A8D10F968B4203533E0 /* bankless-tauri-app_iOS */,
+				892B45282456EA07341E3143 /* Externals */,
+				94C801BD7075B95896246161 /* Sources */,
+				B2AB99E8FB65BAC6B5C05242 /* src */,
+				4254316079CE7C3CF8C53405 /* Frameworks */,
+				7E9A834765A9023957FB183E /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		892B45282456EA07341E3143 /* Externals */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Externals;
+			sourceTree = "<group>";
+		};
+		94C801BD7075B95896246161 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				AE075BF3F52C6B4D77BB8853 /* bankless-tauri-app */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		AE075BF3F52C6B4D77BB8853 /* bankless-tauri-app */ = {
+			isa = PBXGroup;
+			children = (
+				FC0DCE1C8C6F5F6BE63E2CF6 /* main.mm */,
+				E3BED4E9C22683CEFB809F70 /* bindings */,
+			);
+			path = "bankless-tauri-app";
+			sourceTree = "<group>";
+		};
+		B2AB99E8FB65BAC6B5C05242 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				880BB58A672B257ED88F9083 /* lib.rs */,
+				8311D85F98334AD2AA683EE5 /* main.rs */,
+			);
+			name = src;
+			path = ../../src;
+			sourceTree = "<group>";
+		};
+		E3BED4E9C22683CEFB809F70 /* bindings */ = {
+			isa = PBXGroup;
+			children = (
+				A3DCDEAE799723C7DA93ADB1 /* bindings.h */,
+			);
+			path = bindings;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		4C74CAB49339D5B1900D5D74 /* bankless-tauri-app_iOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 96FE7F08BB04683C090DAB31 /* Build configuration list for PBXNativeTarget "bankless-tauri-app_iOS" */;
+			buildPhases = (
+				61AB314DC96DAEB142CCD4C7 /* Build Rust Code */,
+				1E550488678A392FE61BE89D /* Sources */,
+				F3CE7181CB863B6D0D780372 /* Resources */,
+				EACF140950E234F60B242740 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "bankless-tauri-app_iOS";
+			packageProductDependencies = (
+			);
+			productName = "bankless-tauri-app_iOS";
+			productReference = B0E68EB38BB827CC8580EF0A /* bankless-tauri-app_iOS.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		529C839C4BD27402E8033923 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+				};
+			};
+			buildConfigurationList = E5C5428744B074CCC6BDB12B /* Build configuration list for PBXProject "bankless-tauri-app" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = 80D333D466027BAB48950D34;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 54;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				4C74CAB49339D5B1900D5D74 /* bankless-tauri-app_iOS */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		F3CE7181CB863B6D0D780372 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				194658E866896A7727628C47 /* Assets.xcassets in Resources */,
+				44E684EFAFF4D790663F2186 /* LaunchScreen.storyboard in Resources */,
+				1583246AF6DE0F8D00BFEF07 /* assets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		61AB314DC96DAEB142CCD4C7 /* Build Rust Code */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Build Rust Code";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(SRCROOT)/Externals/x86_64/${CONFIGURATION}/libapp.a",
+				"$(SRCROOT)/Externals/arm64/${CONFIGURATION}/libapp.a",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "npm run -- tauri ios xcode-script -v --platform ${PLATFORM_DISPLAY_NAME:?} --sdk-root ${SDKROOT:?} --framework-search-paths \"${FRAMEWORK_SEARCH_PATHS:?}\" --header-search-paths \"${HEADER_SEARCH_PATHS:?}\" --gcc-preprocessor-definitions \"${GCC_PREPROCESSOR_DEFINITIONS:-}\" --configuration ${CONFIGURATION:?} ${FORCE_COLOR} ${ARCHS:?}";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1E550488678A392FE61BE89D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B2543A6F353FB2982DB3D86E /* main.mm in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		34659462CCBE6C3DFEF2D69B /* release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ARCHS = (
+					arm64,
+				);
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "bankless-tauri-app_iOS/bankless-tauri-app_iOS.entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				ENABLE_BITCODE = NO;
+				"EXCLUDED_ARCHS[sdk=iphoneos*]" = x86_64;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\".\"",
+				);
+				INFOPLIST_FILE = "bankless-tauri-app_iOS/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				"LIBRARY_SEARCH_PATHS[arch=arm64]" = "$(inherited) $(PROJECT_DIR)/Externals/arm64/$(CONFIGURATION) $(SDKROOT)/usr/lib/swift $(TOOLCHAIN_DIR)/usr/lib/swift/$(PLATFORM_NAME) $(TOOLCHAIN_DIR)/usr/lib/swift-5.0/$(PLATFORM_NAME)";
+				"LIBRARY_SEARCH_PATHS[arch=x86_64]" = "$(inherited) $(PROJECT_DIR)/Externals/x86_64/$(CONFIGURATION) $(SDKROOT)/usr/lib/swift $(TOOLCHAIN_DIR)/usr/lib/swift/$(PLATFORM_NAME) $(TOOLCHAIN_DIR)/usr/lib/swift-5.0/$(PLATFORM_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.bankless-tauri.app;
+				PRODUCT_NAME = "bankless-tauri-app";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALID_ARCHS = arm64;
+			};
+			name = release;
+		};
+		3D7FC7639E8698792107AC7C /* release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+			};
+			name = release;
+		};
+		51FCA4173789F607D208B054 /* debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ARCHS = (
+					arm64,
+				);
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "bankless-tauri-app_iOS/bankless-tauri-app_iOS.entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				ENABLE_BITCODE = NO;
+				"EXCLUDED_ARCHS[sdk=iphoneos*]" = x86_64;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\".\"",
+				);
+				INFOPLIST_FILE = "bankless-tauri-app_iOS/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				"LIBRARY_SEARCH_PATHS[arch=arm64]" = "$(inherited) $(PROJECT_DIR)/Externals/arm64/$(CONFIGURATION) $(SDKROOT)/usr/lib/swift $(TOOLCHAIN_DIR)/usr/lib/swift/$(PLATFORM_NAME) $(TOOLCHAIN_DIR)/usr/lib/swift-5.0/$(PLATFORM_NAME)";
+				"LIBRARY_SEARCH_PATHS[arch=x86_64]" = "$(inherited) $(PROJECT_DIR)/Externals/x86_64/$(CONFIGURATION) $(SDKROOT)/usr/lib/swift $(TOOLCHAIN_DIR)/usr/lib/swift/$(PLATFORM_NAME) $(TOOLCHAIN_DIR)/usr/lib/swift-5.0/$(PLATFORM_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.bankless-tauri.app;
+				PRODUCT_NAME = "bankless-tauri-app";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALID_ARCHS = arm64;
+			};
+			name = debug;
+		};
+		743587F8B3EDD46C457521A9 /* debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		96FE7F08BB04683C090DAB31 /* Build configuration list for PBXNativeTarget "bankless-tauri-app_iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				51FCA4173789F607D208B054 /* debug */,
+				34659462CCBE6C3DFEF2D69B /* release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = debug;
+		};
+		E5C5428744B074CCC6BDB12B /* Build configuration list for PBXProject "bankless-tauri-app" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				743587F8B3EDD46C457521A9 /* debug */,
+				3D7FC7639E8698792107AC7C /* release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 529C839C4BD27402E8033923 /* Project object */;
+}

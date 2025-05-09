@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">bankless-tauri-app</string>
+    <string name="main_activity_title">bankless-tauri-app</string>
+</resources>
