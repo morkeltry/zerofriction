@@ -22,14 +22,26 @@ function App() {
   if (!ready) {
     return (
       <div className="flex h-screen w-screen items-center justify-center">
-        <button onClick={sendTx} disabled={!safeWallet}></button>
         <Spinner />
       </div>
     )
   }
 
   // Now it's safe to use other Privy hooks and state
-  return <div className="flex h-screen w-screen items-center justify-center">Privy is ready!</div>
+  return (
+    <div className="flex h-screen w-screen items-center justify-center">
+      <div className="flex flex-col items-center gap-4">
+        <div className="text-lg font-semibold">Privy is ready!</div>
+        <button 
+          onClick={sendTx} 
+          disabled={!safeWallet}
+          className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 disabled:bg-gray-400 disabled:cursor-not-allowed"
+        >
+          Send Tx
+        </button>
+      </div>
+    </div>
+  )
 }
 
 export default App
