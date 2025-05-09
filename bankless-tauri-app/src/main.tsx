@@ -1,11 +1,10 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
-import {PrivyProvider} from '@privy-io/react-auth';
+import { PrivyProvider } from '@privy-io/react-auth'
+import React from 'react'
+import ReactDOM from 'react-dom/client'
 
+import App from './App'
 
-import App from "./App";
-
-ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
+ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
     <PrivyProvider
       appId="cmah1dydu00gdjy0ni6eqz7ke"
@@ -13,11 +12,11 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
       config={{
         // Create embedded wallets for users who don't have a wallet
         embeddedWallets: {
-          createOnLogin: 'users-without-wallets'
-        }
+          createOnLogin: 'users-without-wallets',
+        },
       }}
     >
       <App />
     </PrivyProvider>
-  </React.StrictMode>,
-);
+  </React.StrictMode>
+)
