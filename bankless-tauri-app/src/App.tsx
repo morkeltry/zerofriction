@@ -9,6 +9,8 @@ import { usePrivy, useLogin } from '@privy-io/react-auth'
 
 import { Spinner } from '@/components/spinner'
 import useSafeWallet from './hooks/useSafeWallet';
+import { useState } from 'react'
+import EmbeddedWallet from './pages/EmbeddedWallet'
 
 function App() {
   const { safeWallet, sendTx } = useSafeWallet();
@@ -18,6 +20,7 @@ function App() {
   // }
 
   const { ready, authenticated } = usePrivy()
+  const [showWallet, setShowWallet] = useState(false)
 
   const { login } = useLogin({
     onComplete({ user, isNewUser, wasAlreadyAuthenticated, loginMethod, loginAccount }) {
@@ -28,6 +31,7 @@ function App() {
         loginMethod,
         loginAccount
       })
+      setShowWallet(true)
     },
     onError(error) {
       console.log('🔑 🚨 Login error', { error })
@@ -40,6 +44,10 @@ function App() {
         <Spinner />
       </div>
     )
+  }
+
+  if (showWallet) {
+    return <EmbeddedWallet />
   }
 
   // Now it's safe to use other Privy hooks and state
