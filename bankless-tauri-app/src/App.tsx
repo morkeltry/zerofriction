@@ -5,7 +5,7 @@
 // import { useTheme } from "@/components/theme-provider"
 import './index.css'
 
-import { usePrivy } from '@privy-io/react-auth'
+import { usePrivy, useLogin } from '@privy-io/react-auth'
 
 import { Spinner } from '@/components/spinner'
 import useSafeWallet from './hooks/useSafeWallet';
@@ -17,7 +17,22 @@ function App() {
   //   setGreetMsg(await invoke("greet", { name }));
   // }
 
-  const { ready } = usePrivy()
+  const { ready, authenticated } = usePrivy()
+
+  const { login } = useLogin({
+    onComplete({ user, isNewUser, wasAlreadyAuthenticated, loginMethod, loginAccount }) {
+      console.log('🔑 ✅ Login success', {
+        user,
+        isNewUser,
+        wasAlreadyAuthenticated,
+        loginMethod,
+        loginAccount
+      })
+    },
+    onError(error) {
+      console.log('🔑 🚨 Login error', { error })
+    },
+  })
 
   if (!ready) {
     return (
@@ -32,13 +47,17 @@ function App() {
     <div className="flex h-screen w-screen items-center justify-center">
       <div className="flex flex-col items-center gap-4">
         <div className="text-lg font-semibold">Privy is ready!</div>
-        <button 
-          onClick={sendTx} 
+        <button
+          onClick={sendTx}
           disabled={!safeWallet}
           className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 disabled:bg-gray-400 disabled:cursor-not-allowed"
-        >
-          Send Tx
-        </button>
+        >Send Tx</button>
+        <button
+          className='my-4 w-full rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm disabled:bg-indigo-400'
+          onClick={login}
+          // Always check that Privy is `ready` and the user is not `authenticated` before calling `login`
+          disabled={!ready || authenticated}
+        >Login</button>
       </div>
     </div>
   )
