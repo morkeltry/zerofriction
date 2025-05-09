@@ -5,11 +5,12 @@ import { useEffect, useState } from 'react';
 const SEPOLIA_RPC_URL = 'https://ethereum-sepolia-rpc.publicnode.com';
 // const Gnosis_RPC_URL = 'https://gnosis.drpc.org';
 const SEED_PHRASE =
-  '0x4bbbf85ce3377467afe5d46f804f221813b2bb87f24d81f60f1fcdbf7cbf4356';
+  '0xcb65bdcffdae011e201f655f164fac47b59401d34134c6cd845767574e8d36b9';
 const WALLET = new Wallet(SEED_PHRASE);
 
 export default function useSafeWallet() {
   const [safeWallet, setSafeWallet] = useState<Safe4337Pack | null>(null);
+  const [safeAddress, setSafeAddress] = useState<string | null>(null);
 
   useEffect(() => {
     const initSafeWallet = async () => {
@@ -49,17 +50,19 @@ export default function useSafeWallet() {
       const txHash = await safeWallet.executeTransaction({
         executable: signed,
       });
-      console.log(txHash);
+      let userOperationReceipt = null;
+
+      while (!userOperationReceipt) {
+        // Wait 2 seconds before checking the status again
+        await new Promise((resolve) => setTimeout(resolve, 2000));
+        userOperationReceipt = await safeWallet.getUserOperationReceipt(txHash);
+      }
+      setSafeAddress(userOperationReceipt.sender);
+      console.log(txHash, userOperationReceipt);
     } else {
       throw new Error('Safe wallet not initialized');
     }
   };
 
-  const safeAddress = async () => {
-    if (safeWallet) {
-      const address = await safeWallet.console.log(address);
-    }
-  };
-
-  return { safeWallet, sendTx, safeAddress };
+  return { safeWallet, sendTx };
 }
