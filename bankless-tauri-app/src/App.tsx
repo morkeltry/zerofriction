@@ -1,10 +1,13 @@
 
 // import { useEffect } from "react";
 // import { invoke } from "@tauri-apps/api/core";
-import { ThemeProvider } from "@/components/theme-provider";
+// import { ThemeProvider } from "@/components/theme-provider";
+// import { Button } from "@/components/ui/button";
 // import { useTheme } from "@/components/theme-provider"
+import { usePrivy } from '@privy-io/react-auth';
+import { Spinner } from "@/components/spinner";
 
-import { Button } from "@/components/ui/button";
+
 import "./index.css";
 
 function App() {
@@ -14,15 +17,19 @@ function App() {
   //   setGreetMsg(await invoke("greet", { name }));
   // }
 
-  return (
-    <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
-      <main className="dark container w-full h-full flex flex-col items-center justify-center gap-4">
-        <h1>NZero</h1>
-        <Button>Click me</Button>
-      
-      </main>
-    </ThemeProvider>
-  );
+  const {ready} = usePrivy();
+
+  if (!ready) {
+    return (
+      <div className="flex h-screen w-screen items-center justify-center">
+        <Spinner />
+      </div>
+      );
+  }
+
+  // Now it's safe to use other Privy hooks and state
+  return <div className="flex h-screen w-screen items-center justify-center">Privy is ready!</div>;
+
 }
 
 export default App;
