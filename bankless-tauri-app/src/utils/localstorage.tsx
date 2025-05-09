@@ -1,1 +1,1 @@
-export const localstorageKey = 'safeAddress_zerofriction';
+export const localstorageKey = 'safeAddress_zerofriction'

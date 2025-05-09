@@ -1,4 +1,5 @@
 import { Contract, JsonRpcProvider } from 'ethers'
+
 import { SEPOLIA_RPC_URL } from './useSafeWallet'
 
 export const aaveSepolia = {
