@@ -13,6 +13,7 @@ import { RampsScreen } from '@/screens/ramps-screen'
 import { RewardsScreen } from '@/screens/rewards-screen'
 import { EmbeddedWallet } from '@/screens/embedded-wallet'
 
+
 // import useSafeWallet from './hooks/useSafeWallet'
 
 // Navigation component that syncs tabs with routes

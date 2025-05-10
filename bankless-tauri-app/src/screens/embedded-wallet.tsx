@@ -95,6 +95,7 @@ export function EmbeddedWallet() {
     createClient(RELAY_TESTNETS_CONFIG)
   }, []);
 
+
   return (
     <div className="flex h-screen w-screen items-center justify-center">
       <div className="flex flex-col items-center gap-4">
@@ -114,7 +115,6 @@ export function EmbeddedWallet() {
           Bridge 0.001 Sepolia ETH to Base Sepolia
 
         </button>
-
       </div>
     </div>
   )
