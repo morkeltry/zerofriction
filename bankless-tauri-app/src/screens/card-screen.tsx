@@ -24,7 +24,7 @@ function VirtualCard({ showDetails }: { showDetails: boolean }) {
         <img src="/gnosis-logo.svg" alt="Gnosis" className="h-12 w-auto" />
       </div>
       <div className="absolute bottom-6 w-[calc(100%-3rem)] space-y-4">
-        <div className="text-2xl tracking-wider font-mono">
+        <div className="text-xl tracking-wider font-mono">
           {showDetails ? cardData.number : '•••• •••• •••• ••••'}
         </div>
         <div className="flex justify-between items-end">
@@ -71,11 +71,7 @@ export function CardScreen() {
   const [showCardDetails, setShowCardDetails] = useState(false)
 
   return (
-    <div className="mt-6 space-y-8 px-4">
-      <h1 className="text-2xl font-light tracking-widest uppercase text-[rgb(255,255,255,0.8)]">
-        Virtual Card
-      </h1>
-
+    <div className="mt-6 space-y-4">
       <div className="relative">
         <VirtualCard showDetails={showCardDetails} />
         <button

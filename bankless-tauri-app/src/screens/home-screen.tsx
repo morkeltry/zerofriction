@@ -11,17 +11,20 @@ export function HomeScreen() {
   const { balances, isLoading } = useTokenBalances(isConnected ? address : null, 5)
   const total = balances.total
 
-  console.log({ isLoading, total })
+  // Calculate date range for transactions (last 30 days)
+  const endDate = new Date()
+  const startDate = new Date()
+  startDate.setDate(startDate.getDate() - 30)
 
   return (
-    <div className="space-y-6 py-6">
+    <div className="space-y-4 py-2 pt-4">
       {isLoading ? (
         <BalanceCardSkeleton />
       ) : (
         <BalanceCard usdBalance={total.usdBalance} eurBalance={total.eurBalance} />
       )}
       <BalanceChart />
-      <TransactionList />
+      <TransactionList address={address} startDate={startDate} endDate={endDate} />
     </div>
   )
 }
