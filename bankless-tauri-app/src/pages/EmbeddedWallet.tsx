@@ -4,9 +4,6 @@ import { createWalletClient, http } from 'viem';
 import { privateKeyToAccount } from 'viem/accounts';
 import { sepolia, baseSepolia } from 'viem/chains';
 import {  createClient, getClient, convertViemChainToRelayChain, TESTNET_RELAY_API } from "@reservoir0x/relay-sdk"
-// This depends on ethers v5.something, which will cause problems :()
-// import { adaptEthersSigner } from "@reservoir0x/relay-ethers-wallet-adapter"
-import adaptEthersSigner from "../utils/adaptEthersSigner"
 import useSafeWallet from '../hooks/useSafeWallet'
 import { log } from 'node:console'
 
