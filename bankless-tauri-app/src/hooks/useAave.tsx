@@ -23,6 +23,7 @@ const poolABI = [
   'function supply(address asset, uint256 amount, address onBehalfOf, uint16 referralCode) public',
   'function borrow(address asset, uint256 amount, uint256 interestRateMode, uint16 referralCode, address onBehalfOf) public',
   'function setUserUseReserveAsCollateral(address asset, bool useAsCollateral) public',
+  'function withdraw(address asset, uint256 amount, address to) public returns (uint256)',
 ]
 
 const poolContract = new Contract(aaveSepolia.pool, poolABI)
@@ -43,6 +44,10 @@ export default function useAave() {
 
   const borrowFromAave = (asset: string, address: string, amount: string) => {
     return poolContract.interface.encodeFunctionData('borrow', [asset, amount, 2, 0, address])
+  }
+
+  const withdrawFromAave = (asset: string, address: string, amount: string) => {
+    return poolContract.interface.encodeFunctionData('withdraw', [asset, amount, address])
   }
 
   const wrapETH = () => {
@@ -82,5 +87,6 @@ export default function useAave() {
     getTokenBalance,
     getApproveToken,
     setUserUseReserveAsCollateral,
+    withdrawFromAave,
   }
 }
