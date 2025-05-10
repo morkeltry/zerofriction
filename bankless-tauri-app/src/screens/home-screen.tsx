@@ -8,7 +8,7 @@ import { useTokenBalances } from '@/hooks/use-token-balances'
 // Home screen component
 export function HomeScreen() {
   const { address, isConnected } = usePrivyWallet()
-  const { balances, isLoading } = useTokenBalances(isConnected ? address : null)
+  const { balances, isLoading } = useTokenBalances(isConnected ? address : null, 5)
   const total = balances.total
 
   console.log({ isLoading, total })
