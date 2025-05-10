@@ -8,11 +8,10 @@ import { Spinner } from '@/components/spinner'
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { CardScreen } from '@/screens/card-screen'
 import { EarnScreen } from '@/screens/earn-screen'
+import { EmbeddedWallet } from '@/screens/embedded-wallet'
 import { HomeScreen } from '@/screens/home-screen'
 import { RampsScreen } from '@/screens/ramps-screen'
 import { RewardsScreen } from '@/screens/rewards-screen'
-import { EmbeddedWallet } from '@/screens/embedded-wallet'
-
 
 // import useSafeWallet from './hooks/useSafeWallet'
 
