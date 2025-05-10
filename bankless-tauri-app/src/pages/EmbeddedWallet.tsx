@@ -1,38 +1,88 @@
+import React, { useEffect, useState } from "react"
 import { usePrivy } from '@privy-io/react-auth'
-import { ethers } from 'ethers'
-import { getClient } from "@reservoir0x/relay-sdk"
+import { createWalletClient, http } from 'viem';
+import { privateKeyToAccount } from 'viem/accounts';
+import { sepolia, baseSepolia } from 'viem/chains';
+import {  createClient, getClient, convertViemChainToRelayChain, TESTNET_RELAY_API } from "@reservoir0x/relay-sdk"
+// This depends on ethers v5.something, which will cause problems :()
+// import { adaptEthersSigner } from "@reservoir0x/relay-ethers-wallet-adapter"
+import adaptEthersSigner from "../utils/adaptEthersSigner"
 import useSafeWallet from '../hooks/useSafeWallet'
+import { log } from 'node:console'
 
 const SEPOLIA_RPC_URL = 'https://ethereum-sepolia-rpc.publicnode.com'
+const BASE_SEPOLIA_RPC_URL = 'https://base-sepolia-rpc.publicnode.com'
 // const Gnosis_RPC_URL = 'https://gnosis.drpc.org';
-const SEED_PHRASE = '0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80'
-const wallet = new ethers.Wallet(SEED_PHRASE)
+const RELAY_API = 'https://api.relay.link'
+const RELAY_TESTNETS_API = 'https://api.testnets.relay.link'
+
+// const PRIVATE_KEY = import.meta.env.PRIVATE_KEY as string;
 
 const SEPOLIA_CHAIN_ID = 11155111
 const BASE_SEPOLIA_CHAIN_ID = 84532
 const START_CHAIN_ID = SEPOLIA_CHAIN_ID
 const BRIDGE_CHAIN_ID = BASE_SEPOLIA_CHAIN_ID
 
-const MILLIETHER = ethers.parseUnits('0.001', 18).toString();
+const MILLIETHER = "1000000000000000";
+
+const RELAY_TESTNETS_CONFIG = {
+  baseApiUrl: RELAY_TESTNETS_API,
+  source: "zerofric",
+  chains: [
+    // {
+    //   id: 11155111,
+    //   name: "sepolia",
+    //   displayName: "Sepolia",
+    //   httpRpcUrl: SEPOLIA_RPC_URL,
+    // },
+    convertViemChainToRelayChain(sepolia),
+
+    {
+      id: 84532,
+      name: "base-sepolia",
+      displayName: "Base Sepolia",
+      httpRpcUrl: BASE_SEPOLIA_RPC_URL,
+    },
+    convertViemChainToRelayChain(baseSepolia)
+  ],
+};
 
 
 async function bridgeEth() {
-  {/* Get bridge quote */}
-  const quote = await getClient()?.actions.getQuote({
+  console.log('Bridge ETH!');
+  
+  const account = privateKeyToAccount(PRIVATE_KEY);
+  const wallet = await createWalletClient({
+    account,
+    chain: sepolia,
+    transport: http(SEPOLIA_RPC_URL),
+  })
+
+  console.log(account);
+  console.log(wallet);
+
+  const client = await getClient()
+  console.log(client);
+
+  // Get the bridge quote
+  const quote = await client?.actions.getQuote({
     wallet,
     chainId: SEPOLIA_CHAIN_ID,
     toChainId: BASE_SEPOLIA_CHAIN_ID,
     amount: MILLIETHER,
     currency: '0x0000000000000000000000000000000000000000', // Native ETH
     toCurrency: '0x0000000000000000000000000000000000000000', // Native ETH
-    recipient: await wallet.getAddress(),
+    tradeType: "EXACT_INPUT",
+    recipient: wallet.account.address,
   });
 
-  {/* Execute bridge transaction */}
+
+  // Execute bridge transaction
   await getClient()?.actions.execute({
     quote,
     wallet,
-    onProgress: (steps: any, fees: any, currentStep: any, currentStepItem: any) => {
+    onProgress: (data : any) => {
+      const { steps, fees, currentStep, currentStepItem } = data
       console.log(steps, fees, currentStep, currentStepItem);
     },
   });
@@ -42,6 +92,10 @@ async function bridgeEth() {
 export default function EmbeddedWallet() {
   const { safeWallet, sendTx } = useSafeWallet()
   const { user } = usePrivy()
+
+  useEffect(() => {
+    createClient(RELAY_TESTNETS_CONFIG)
+  }, []);
 
   return (
     <div className="flex h-screen w-screen items-center justify-center">
@@ -57,7 +111,6 @@ export default function EmbeddedWallet() {
 
         <button 
           onClick={bridgeEth} 
-          disabled={!safeWallet}
           className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 disabled:bg-gray-400 disabled:cursor-not-allowed"
         >          
           Bridge 0.001 Sepolia ETH to Base Sepolia
