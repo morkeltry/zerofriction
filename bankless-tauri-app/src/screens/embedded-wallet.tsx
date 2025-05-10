@@ -91,7 +91,7 @@ async function bridgeEth() {
 }
 
 export function EmbeddedWallet() {
-  const { safeWallet, sendTx } = useSafeWallet()
+  const { safeWallet, sendTx } = useSafeWallet(sepolia)
   const { user } = usePrivy()
 
   useEffect(() => {
