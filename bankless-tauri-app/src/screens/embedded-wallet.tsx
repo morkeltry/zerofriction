@@ -4,6 +4,7 @@ import { createWalletClient, http } from 'viem';
 import { privateKeyToAccount } from 'viem/accounts';
 import { sepolia, baseSepolia } from 'viem/chains';
 import {  createClient, getClient, convertViemChainToRelayChain, TESTNET_RELAY_API } from "@reservoir0x/relay-sdk"
+
 import useSafeWallet from '../hooks/useSafeWallet'
 import { log } from 'node:console'
 
@@ -86,7 +87,7 @@ async function bridgeEth() {
 }
 
 
-export default function EmbeddedWallet() {
+export function EmbeddedWallet() {
   const { safeWallet, sendTx } = useSafeWallet()
   const { user } = usePrivy()
 
@@ -98,8 +99,8 @@ export default function EmbeddedWallet() {
     <div className="flex h-screen w-screen items-center justify-center">
       <div className="flex flex-col items-center gap-4">
         <div className="text-lg font-semibold">Welcome {user?.email?.address}</div>
-        <button 
-          onClick={sendTx} 
+        <button
+          onClick={sendTx}
           disabled={!safeWallet}
           className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 disabled:bg-gray-400 disabled:cursor-not-allowed"
         >
@@ -117,4 +118,4 @@ export default function EmbeddedWallet() {
       </div>
     </div>
   )
-} 
+}
