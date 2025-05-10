@@ -4,6 +4,9 @@ import { useEffect, useState } from 'react'
 
 import { localstorageKey } from '../utils/localstorage'
 import useAave, { aaveSepolia } from './useAave'
+import { useWallets } from '@privy-io/react-auth'
+import { createWalletClient, custom } from 'viem'
+import { sepolia } from 'viem/chains'
 
 export const SEPOLIA_RPC_URL = 'https://ethereum-sepolia-rpc.publicnode.com'
 // const Gnosis_RPC_URL = 'https://gnosis.drpc.org';
@@ -23,11 +26,24 @@ export default function useSafeWallet() {
     localStorage.getItem(localstorageKey) || null
   )
 
+  const { ready: readyWallets, wallets } = useWallets()
   useEffect(() => {
+    if (!readyWallets || wallets.length === 0) {
+      console.log('No wallets available')
+      return
+    }
+
     const initSafeWallet = async () => {
+      const ethereumProvider = await wallets[0].getEthereumProvider()
+
+      const provider = createWalletClient({
+        chain: sepolia,
+        transport: custom(ethereumProvider)
+      })
+      const signer = wallets[0].address
       const safeWallet = await Safe4337Pack.init({
-        provider: SEPOLIA_RPC_URL,
-        signer: SEED_PHRASE,
+        provider: provider as any,
+        signer: signer,
         bundlerUrl: `https://api.pimlico.io/v2/11155111/rpc?add_balance_override&apikey=pim_k8rpLTHYkY3pEUHoa7Lc98`,
         options: {
           owners: [WALLET.address],
@@ -42,10 +58,11 @@ export default function useSafeWallet() {
       setSafeWallet(safeWallet)
     }
     initSafeWallet()
-  }, [])
+  }, [wallets])
 
   const sendTx = async () => {
     if (safeWallet) {
+      safeWallet.signSafeOperation
       const txs = await safeWallet.createTransaction({
         transactions: [
           {
