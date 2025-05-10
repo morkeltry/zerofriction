@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useState, useRef, useMemo } from 'react'
 import { createPublicClient, erc20Abi, formatUnits, http } from 'viem'
 import { gnosis, mainnet, polygon } from 'viem/chains'
 
@@ -52,8 +52,8 @@ interface AllBalances {
   total: ChainBalances
 }
 
-// Create public clients for each chain
-const publicClients = {
+// Create public clients for each chain - moved inside hook for proper memoization
+const createPublicClients = () => ({
   ethereum: createPublicClient({
     chain: mainnet,
     transport: http(),
@@ -66,7 +66,7 @@ const publicClients = {
     chain: gnosis,
     transport: http(),
   }),
-}
+})
 
 /**
  * Hook to fetch and manage token balances across all supported chains
@@ -83,8 +83,18 @@ export const useTokenBalances = (address: string | null) => {
     total: { usdBalance: '0', eurBalance: '0', nativeBalance: '0', tokenBalances: [] },
   })
 
+  // Memoize public clients to prevent recreation on each render
+  const publicClients = useMemo(() => createPublicClients(), [])
+
+  // Track previous address to prevent unnecessary refetches
+  const prevAddressRef = useRef<string | null>(null)
+
   const fetchBalances = useCallback(async () => {
     if (!address) return
+
+    // Skip if address hasn't changed
+    if (prevAddressRef.current === address) return
+    prevAddressRef.current = address
 
     setIsLoading(true)
     try {
@@ -186,11 +196,14 @@ export const useTokenBalances = (address: string | null) => {
     } finally {
       setIsLoading(false)
     }
-  }, [address, setBalances, setIsLoading])
+  }, [address, publicClients])
+
+  // Memoize the balances object to prevent unnecessary re-renders
+  const memoizedBalances = useMemo(() => balances, [balances])
 
   useEffect(() => {
     fetchBalances()
   }, [fetchBalances])
 
-  return { balances, isLoading }
+  return { balances: memoizedBalances, isLoading }
 }
