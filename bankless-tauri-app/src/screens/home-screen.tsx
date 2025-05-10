@@ -14,7 +14,7 @@ export function HomeScreen() {
   console.log({ isLoading, total })
 
   return (
-    <div className="space-y-6 py-6">
+    <div className="space-y-4 py-2 pt-4">
       {isLoading ? (
         <BalanceCardSkeleton />
       ) : (
