@@ -1,4 +1,4 @@
-import { Contract, JsonRpcProvider } from 'ethers'
+import { Contract, providers } from 'ethers'
 
 import { SEPOLIA_RPC_URL } from './useSafeWallet'
 
@@ -61,7 +61,7 @@ export default function useAave() {
           ? aaveSepolia.aWeth
           : aaveSepolia.usdc,
       erc20Abi,
-      new JsonRpcProvider(SEPOLIA_RPC_URL)
+      new providers.JsonRpcProvider(SEPOLIA_RPC_URL)
     )
     const balance = await contract.balanceOf(address)
     return balance
