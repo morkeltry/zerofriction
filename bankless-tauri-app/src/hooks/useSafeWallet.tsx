@@ -11,7 +11,7 @@ import { sepolia } from 'viem/chains'
 export const SEPOLIA_RPC_URL = 'https://ethereum-sepolia-rpc.publicnode.com'
 // const Gnosis_RPC_URL = 'https://gnosis.drpc.org';
 const SEED_PHRASE = '0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80'
-const WALLET = new Wallet(SEED_PHRASE)
+// const WALLET = new Wallet(SEED_PHRASE)
 
 export default function useSafeWallet() {
   const {
@@ -46,7 +46,7 @@ export default function useSafeWallet() {
         signer: signer,
         bundlerUrl: `https://api.pimlico.io/v2/11155111/rpc?add_balance_override&apikey=pim_k8rpLTHYkY3pEUHoa7Lc98`,
         options: {
-          owners: [WALLET.address],
+          owners: [wallets[0].address],
           threshold: 1,
         },
         paymasterOptions: {
